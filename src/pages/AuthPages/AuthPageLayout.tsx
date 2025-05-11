@@ -22,12 +22,12 @@ export default function AuthLayout({
                   width={231}
                   height={48}
                   className="loginLogo"
-                  src="public\images\authLogo.png"
+                  src="public\images\loogo.jpg"
                   alt="Logo"
                 />
               </Link>
               <p className="text-center text-gray-400 dark:text-white/60">
-                Streamline your fleet management and logistics operations with Trux360
+                Streamline your Scholarship operations with Scholarship Portal
               </p>
             </div>
           </div>

@@ -42,10 +42,10 @@ export default function TrucksList() {
     <>
       <PageMeta
         title="Trucks List"
-        description="View and manage trucks data using Trux360's table components"
-        ogTitle="Trucks List - Trux360"
+        description="View and manage trucks data using Scholarship Portal's table components"
+        ogTitle="Trucks List - Scholarship Portal"
         ogDescription="Data table components for managing trucks and fleet information"
-        keywords="trucks, fleet management, vehicle data, Trux360 tables"
+        keywords="trucks, fleet management, vehicle data, Scholarship Portal tables"
       />
       <PageBreadcrumb pageTitle="Trucks" />
       <div className="space-y-6">

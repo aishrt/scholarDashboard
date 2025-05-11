@@ -76,7 +76,7 @@ export default function UserMetaCard() {
                 <div className="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
                   <div className="col-span-2 lg:col-span-1">
                     <Label>First Name</Label>
-                    <Input type="text" value="Neeraj " />
+                    <Input type="text" value="John " />
                   </div>
 
                   <div className="col-span-2 lg:col-span-1">

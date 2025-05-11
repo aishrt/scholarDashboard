@@ -15,7 +15,7 @@ export const AppRoutes = () => {
 
   let allRoutes: RouteObject[] = [...commonRoutes];
 
-  if (token) {
+  if (!token) {
     console.log("Token is present");
 
     allRoutes = [...protectedRoutes];

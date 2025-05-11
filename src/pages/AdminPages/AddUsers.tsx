@@ -235,7 +235,7 @@ export default function AddUsers() {
       <PageMeta
         title={isEditMode ? "Edit User" : "Add User"}
         description={isEditMode ? "Edit existing user details" : "Add a new user to the system"}
-        ogTitle={isEditMode ? "Edit User - Trux360 Fleet Management" : "Add User - Trux360 Fleet Management"}
+        ogTitle={isEditMode ? "Edit User - Scholarship Portal" : "Add User - Scholarship Portal"}
         ogDescription={isEditMode ? "Edit existing user details" : "Add a new user with various roles and details"}
       />
       <PageBreadcrumb pageTitle={isEditMode ? "Edit User" : "Add User"} />

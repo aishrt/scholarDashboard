@@ -42,10 +42,10 @@ export default function DealsList() {
     <>
       <PageMeta
         title="Deals List"
-        description="View and manage deals data using Trux360's table components"
-        ogTitle="Deals List - Trux360"
+        description="View and manage deals data using Scholarship Portal's table components"
+        ogTitle="Deals List - Scholarship Portal"
         ogDescription="Data table components for managing deals and logistics information"
-        keywords="deals, fleet management, logistics data, Trux360 tables"
+        keywords="deals, fleet management, logistics data, Scholarship Portal tables"
       />
       <PageBreadcrumb pageTitle="Deals" />
       <div className="space-y-6">

@@ -28,9 +28,9 @@ const ErrorPage = () => {
       <ScrollToTop />
       <PageMeta
         title="Error"
-        description="An error occurred while accessing Trux360's fleet management platform"
-        ogTitle="Error | Trux360"
-        ogDescription="An error occurred while accessing Trux360"
+        description="An error occurred while accessing Scholarship Portal's scholarship management platform"
+        ogTitle="Error | Scholarship Portal"
+        ogDescription="An error occurred while accessing Scholarship Portal"
       />
       <div className="relative flex flex-col items-center justify-center min-h-screen p-6 overflow-hidden z-1">
         <GridShape />

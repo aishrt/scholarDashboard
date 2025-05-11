@@ -17,7 +17,7 @@ export default function FormElements() {
       <PageMeta
         title="Form Elements"
         description="Build and customize forms with various input elements and controls"
-        ogTitle="Form Elements - Trux360 Fleet Management"
+        ogTitle="Form Elements - Scholarship Portal"
         ogDescription="Create dynamic forms with input fields, dropdowns, checkboxes and more"
       />
       <PageBreadcrumb pageTitle="From Elements" />

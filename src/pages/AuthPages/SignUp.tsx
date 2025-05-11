@@ -7,9 +7,9 @@ export default function SignUp() {
     <>
       <PageMeta
         title="Sign Up"
-        description="Create your Trux360 account to start managing your fleet and logistics operations"
-        ogTitle="Sign Up for Trux360 - Fleet Management Platform"
-        ogDescription="Join Trux360 to streamline your fleet management and logistics operations"
+        description="Create your Scholarship Portal account to start managing your scholarship and logistics operations"
+        ogTitle="Sign Up for Scholarship Portal - Scholarship Management Platform"
+        ogDescription="Join Scholarship Portal to streamline your scholarship management and logistics operations"
       />
       <AuthLayout>
         <SignUpForm />

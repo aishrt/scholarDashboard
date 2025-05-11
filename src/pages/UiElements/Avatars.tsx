@@ -8,10 +8,10 @@ export default function Avatars() {
     <>
       <PageMeta
         title="Avatars"
-        description="Customize and manage user avatars in Trux360's interface"
-        ogTitle="Avatar Components - Trux360"
+        description="Customize and manage user avatars in Scholarship Portal's interface"
+        ogTitle="Avatar Components - Scholarship Portal"
         ogDescription="Avatar components for displaying user profiles and status indicators"
-        keywords="user avatars, profile pictures, status indicators, Trux360 avatars"
+        keywords="user avatars, profile pictures, status indicators, Scholarship Portal avatars"
       />
       <PageBreadcrumb pageTitle="Avatars" />
       <div className="space-y-5 sm:space-y-6">

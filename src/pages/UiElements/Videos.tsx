@@ -11,10 +11,10 @@ const Videos = () => {
     <>
       <PageMeta
         title="Videos"
-        description="Manage and display fleet operation videos in Trux360's interface"
-        ogTitle="Video Management - Trux360"
-        ogDescription="Video handling and display components for Trux360's fleet management platform"
-        keywords="video management, fleet videos, operation recordings, Trux360 media"
+        description="Manage and display scholarship operation videos in Scholarship Portal's interface"
+        ogTitle="Video Management - Scholarship Portal"
+        ogDescription="Video handling and display components for Scholarship Portal's scholarship management platform"
+        keywords="video management, scholarship videos, operation recordings, Scholarship Portal media"
       />
       <PageBreadcrumb pageTitle="Videos" />
       <div className="grid grid-cols-1 gap-5 sm:gap-6 xl:grid-cols-2">

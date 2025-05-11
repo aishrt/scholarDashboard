@@ -8,10 +8,10 @@ export default function Alerts() {
     <>
       <PageMeta
         title="Alerts"
-        description="Configure and manage fleet operation alerts in Trux360's interface"
-        ogTitle="Alert Management - Trux360"
-        ogDescription="Alert and notification components for Trux360's fleet management platform"
-        keywords="alert management, fleet notifications, operation alerts, Trux360 alerts"
+        description="Configure and manage scholarship operation alerts in Scholarship Portal's interface"
+        ogTitle="Alert Management - Scholarship Portal"
+        ogDescription="Alert and notification components for Scholarship Portal's scholarship management platform"
+        keywords="alert management, scholarship notifications, operation alerts, Scholarship Portal alerts"
       />
       <PageBreadcrumb pageTitle="Alerts" />
       <div className="space-y-5 sm:space-y-6">

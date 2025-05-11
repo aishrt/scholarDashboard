@@ -293,10 +293,10 @@ export default function CompanyList() {
       <>
         <PageMeta
           title="Edit Company"
-          description="Edit company details using Trux360's form components"
-          ogTitle="Edit Company - Trux360"
+          description="Edit company details using Scholarship Portal's form components"
+          ogTitle="Edit Company - Scholarship Portal"
           ogDescription="Form components for editing company information"
-          keywords="company edit, organization management, Trux360 forms"
+          keywords="company edit, organization management, Scholarship Portal forms"
         />
         <PageBreadcrumb pageTitle="Edit Company" />
         <div className="space-y-6">
@@ -427,10 +427,10 @@ export default function CompanyList() {
     <>
       <PageMeta
         title="Company List"
-        description="View and manage company data using Trux360's table components"
-        ogTitle="Company List - Trux360"
+        description="View and manage company data using Scholarship Portal's table components"
+        ogTitle="Company List - Scholarship Portal"
         ogDescription="Data table components for managing company and organization information"
-        keywords="data tables, company management, organization data, Trux360 tables"
+        keywords="data tables, company management, organization data, Scholarship Portal tables"
       />
       <PageBreadcrumb pageTitle="Company List" />
       <div className="space-y-6">

@@ -42,10 +42,10 @@ export default function TransactionsList() {
     <>
       <PageMeta
         title="Transactions List"
-        description="View and manage transactions data using Trux360's table components"
-        ogTitle="Transactions List - Trux360"
+        description="View and manage transactions data using Scholarship Portal's table components"
+        ogTitle="Transactions List - Scholarship Portal"
         ogDescription="Data table components for managing transactions and financial information"
-        keywords="transactions, financial data, payment records, Trux360 tables"
+        keywords="transactions, financial data, payment records, Scholarship Portal tables"
       />
       <PageBreadcrumb pageTitle="Transactions" />
       <div className="space-y-6">

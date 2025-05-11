@@ -9,10 +9,10 @@ export default function Badges() {
     <div>
       <PageMeta
         title="Badges"
-        description="Configure and manage status badges in Trux360's interface"
-        ogTitle="Badge Components - Trux360" 
+        description="Configure and manage status badges in Scholarship Portal's interface"
+        ogTitle="Badge Components - Scholarship Portal" 
         ogDescription="Badge components for displaying status indicators and notifications"
-        keywords="status badges, notification badges, indicators, Trux360 badges"
+        keywords="status badges, notification badges, indicators, Scholarship Portal badges"
       />
       <PageBreadcrumb pageTitle="Badges" />
       <div className="space-y-5 sm:space-y-6">

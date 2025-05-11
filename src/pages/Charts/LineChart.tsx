@@ -8,9 +8,9 @@ export default function LineChart() {
     <>
       <PageMeta
         title="Line Charts"
-        description="Visualize your fleet and logistics data with interactive line charts"
-        ogTitle="Line Chart Analytics - Trux360 Fleet Management"
-        ogDescription="Analyze fleet performance and logistics metrics using interactive line charts"
+        description="Visualize your scholarship and logistics data with interactive line charts"
+        ogTitle="Line Chart Analytics - Scholarship Portal"
+        ogDescription="Analyze scholarship performance and logistics metrics using interactive line charts"
       />
       <PageBreadcrumb pageTitle="Line Chart" />
       <div className="space-y-6">

@@ -340,14 +340,14 @@ const AppSidebar: React.FC = () => {
             <>
               <img
                 className="dark:hidden"
-                src="../../public/images/loogo.png"
-                alt="Logo3333333333"
+                src="../../public/images/loogo.jpg"
+                alt="Logo"
                 width={140}
                 height={30}
               />
               <img
                 className="hidden dark:block"
-                src="../../public/images/loogo.png"
+                src="../../public/images/loogo.jpg"
                 alt="Logo"
                 width={150}
                 height={40}
@@ -355,7 +355,7 @@ const AppSidebar: React.FC = () => {
             </>
           ) : (
             <img
-              src="../../public/images/loogo.png"
+              src="../../public/images/loogo.jpg"
               alt="Logo"
               width={32}
               height={32}
@@ -380,22 +380,6 @@ const AppSidebar: React.FC = () => {
               </h2>
               {renderMenuItems(navItems, "main")}
             </div>
-            {/* <div className="">
-              <h2
-                className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${
-                  !isExpanded && !isHovered
-                    ? "lg:justify-center"
-                    : "justify-start"
-                }`}
-              >
-                {isExpanded || isHovered || isMobileOpen ? (
-                  "Others"
-                ) : (
-                  <HorizontaLDots />
-                )}
-              </h2>
-              {renderMenuItems(othersItems, "others")}
-            </div> */}
           </div>
         </nav>
       </div>

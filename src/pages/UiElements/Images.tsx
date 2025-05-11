@@ -10,10 +10,10 @@ export default function Images() {
     <>
       <PageMeta
         title="Images"
-        description="Manage and optimize images in Trux360's interface"
-        ogTitle="Image Components - Trux360"
+        description="Manage and optimize images in Scholarship Portal's interface"
+        ogTitle="Image Components - Scholarship Portal"
         ogDescription="Image components for displaying and organizing visual content"
-        keywords="image management, visual content, image optimization, Trux360 images"
+        keywords="image management, visual content, image optimization, Scholarship Portal images"
       />
       <PageBreadcrumb pageTitle="Images" />
       <div className="space-y-5 sm:space-y-6">

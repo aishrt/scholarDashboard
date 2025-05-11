@@ -9,10 +9,10 @@ const Buttons = () => {
     <>
       <PageMeta
         title="Buttons"
-        description="Explore Trux360's UI button components for fleet management interface"
-        ogTitle="UI Buttons - Trux360"
-        ogDescription="Interactive button components for Trux360's fleet management platform"
-        keywords="UI buttons, interactive elements, fleet management interface, Trux360 components"
+        description="Explore Scholarship Portal's UI button components for scholarship management interface"
+        ogTitle="UI Buttons - Scholarship Portal"
+        ogDescription="Interactive button components for Scholarship Portal's scholarship management platform"
+        keywords="UI buttons, interactive elements, scholarship management interface, Scholarship Portal components"
       />
       <PageBreadcrumb pageTitle="Buttons" />
       <div className="space-y-5 sm:space-y-6">

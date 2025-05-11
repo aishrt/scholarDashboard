@@ -17,19 +17,19 @@ interface PageMetaProps {
 const PageMeta = ({
   title,
   description,
-  keywords = "Trux360, fleet management, logistics, transportation, tracking, analytics",
+  keywords = "Scholarship Portal, scholarship management, scholarship application, scholarship management platform",
   ogTitle,
   ogDescription,
-  ogImage = "/images/logo/trux360-logo.png",
+  ogImage = "/images/logo/scholarship-portal-logo.png",
   ogUrl = window.location.href,
   twitterCard = "summary_large_image",
   twitterTitle,
   twitterDescription,
-  twitterImage = "/images/logo/trux360-logo.png",
+  twitterImage = "/images/logo/scholarship-portal-logo.png",
 }: PageMetaProps) => (
   <Helmet>
     {/* Basic Meta Tags */}
-    <title>{`${title} | Trux360`}</title>
+    <title>{`${title} | Scholarship Portal`}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     
@@ -50,7 +50,7 @@ const PageMeta = ({
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#1a56db" />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/images/logo/trux360-logo.png" />
+    <link rel="apple-touch-icon" href="/images/logo/scholarship-portal-logo.png" />
   </Helmet>
 );
 

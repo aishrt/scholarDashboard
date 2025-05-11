@@ -7,9 +7,9 @@ export default function ForgotPassword() {
     <>
       <PageMeta
         title="Forgot Password"
-        description="Reset your Trux360 account password to regain access to your fleet management platform"
-        ogTitle="Reset Password - Trux360"
-        ogDescription="Reset your Trux360 account password to regain access to your fleet management platform"
+        description="Reset your Scholarship Portal account password to regain access to your scholarship management platform"
+        ogTitle="Reset Password - Scholarship Portal"
+        ogDescription="Reset your Scholarship Portal account password to regain access to your scholarship management platform"
       />
       <AuthLayout>
         <ForgotPasswordForm />

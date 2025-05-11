@@ -1,4 +1,4 @@
-const storagePrefix = 'trux_';
+const storagePrefix = 'scholar_';
 
 const storage = {
   setToken: (token: string) => {

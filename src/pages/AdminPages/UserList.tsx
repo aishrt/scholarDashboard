@@ -243,10 +243,10 @@ export default function UserList() {
     <>
       <PageMeta
         title={isAdminList ? "Admin List" : "User List"}
-        description="View and manage fleet data using Trux360's table components"
-        ogTitle="User List - Trux360"
+        description="View and manage fleet data using Scholarship Portal's table components"
+        ogTitle="User List - Scholarship Portal"
         ogDescription="Data table components for managing fleet and logistics information"
-        keywords="data tables, fleet management, logistics data, Trux360 tables"
+        keywords="data tables, fleet management, logistics data, Scholarship Portal tables"
       />
       <PageBreadcrumb pageTitle={isAdminList ? "Admin List" : "User List"} />
       <div className="space-y-6">

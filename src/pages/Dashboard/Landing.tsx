@@ -170,16 +170,26 @@ const Landing: React.FC = () => {
         <div className="container">
           <h1>
             <Link to="/" className="logo">
-              {/* TRUX360 */}
-              <img src="../../public/images/loogo.png" alt="Logo" width={140} height={30} />
+              {/* Scholarship Portal */}
+              <img
+                src="../../public/images/loogo.png"
+                alt="Logo"
+                width={140}
+                height={30}
+              />
             </Link>
           </h1>
 
           <nav className={`navbar ${isMenuOpen ? "active" : ""}`} data-navbar>
             <div className="navbar-top">
               <Link to="/" className="logo">
-                {/* TRUX360 */}
-                <img src="../../public/images/loogo.png" alt="Logo" width={140} height={30} />
+                {/* Scholarship Portal */}
+                <img
+                  src="../../public/images/loogo.png"
+                  alt="Logo"
+                  width={140}
+                  height={30}
+                />
               </Link>
               <button
                 className="nav-close-btn"
@@ -444,11 +454,11 @@ const Landing: React.FC = () => {
           <div className="footer-top section">
             <div className="footer-brand">
               <Link to="/" className="logo">
-                TRUX360
+                Scholarship Portal
               </Link>
               <p className="footer-text">
-                Streamline your fleet management and logistics operations with
-                Trux360
+                Streamline your scholarship management and logistics operations
+                with Scholarship Portal
               </p>
               <ul className="social-list">
                 <li>
@@ -540,9 +550,9 @@ const Landing: React.FC = () => {
 
           <div className="footer-bottom">
             <p className="copyright">
-              &copy; 2025 TRUX360. All Rights Reserved by{" "}
+              &copy; 2025 Scholarship Portal. All Rights Reserved by{" "}
               <Link to="#" className="copyright-link">
-                Kalkogic
+                Admin
               </Link>
             </p>
           </div>

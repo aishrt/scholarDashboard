@@ -9,8 +9,8 @@ export default function BarChart() {
       <PageMeta
         title="Bar Charts"
         description="Visualize your fleet and logistics data with interactive bar charts"
-        ogTitle="Bar Chart Analytics - Trux360 Fleet Management"
-        ogDescription="Analyze fleet performance and logistics metrics using interactive bar charts"
+        ogTitle="Bar Chart Analytics - Scholarship Portal"
+        ogDescription="Analyze scholarship performance and logistics metrics using interactive bar charts"
       />
       <PageBreadcrumb pageTitle="Bar Chart" />
       <div className="space-y-6">

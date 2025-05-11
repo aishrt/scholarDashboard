@@ -11,10 +11,10 @@ export default function Home() {
     <>
       <PageMeta
         title="Dashboard"
-        description="Trux360 Dashboard - Monitor your fleet, track vehicles, and analyze logistics data in real-time"
-        ogTitle="Trux360 Dashboard - Fleet Management Platform"
-        ogDescription="Real-time fleet monitoring and logistics analytics platform"
-        keywords="fleet dashboard, vehicle tracking, logistics analytics, fleet management, real-time monitoring"
+        description="Scholarship Portal Dashboard - Monitor your scholarship, track vehicles, and analyze logistics data in real-time"
+        ogTitle="Scholarship Portal Dashboard - Scholarship Management Platform"
+        ogDescription="Real-time scholarship monitoring and analytics platform"
+        keywords="scholarship dashboard, vehicle tracking, logistics analytics, scholarship management, real-time monitoring"
       />
       <div className="grid grid-cols-12 gap-4 md:gap-6">
         <div className="col-span-12 space-y-6 xl:col-span-7">

@@ -7,9 +7,9 @@ const NotFound = () => {
     <>
       <PageMeta
         title="Page Not Found"
-        description="The requested page could not be found on Trux360's fleet management platform"
-        ogTitle="404 - Page Not Found | Trux360"
-        ogDescription="The requested page could not be found on Trux360"
+        description="The requested page could not be found on Scholarship Portal's scholarship management platform"
+        ogTitle="404 - Page Not Found | Scholarship Portal"
+        ogDescription="The requested page could not be found on Scholarship Portal"
       />
       <div className="relative flex flex-col items-center justify-center min-h-screen p-6 overflow-hidden z-1">
         <GridShape />

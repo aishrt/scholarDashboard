@@ -7,9 +7,9 @@ export default function SignIn() {
     <>
       <PageMeta
         title="Sign In"
-        description="Sign in to your Trux360 account to access fleet management and logistics tools"
-        ogTitle="Sign In to Trux360 - Fleet Management Platform"
-        ogDescription="Access your fleet management dashboard and logistics tools"
+        description="Sign in to your Scholarship Portal account to access scholarship management and application tools"
+        ogTitle="Sign In to Scholarship Portal - Scholarship Management Platform"
+        ogDescription="Access your scholarship management dashboard and application tools"
       />
       <AuthLayout>
         <SignInForm />

@@ -119,9 +119,9 @@ const Calendar: React.FC = () => {
     <>
       <PageMeta
         title="Calendar"
-        description="Manage your fleet schedules, maintenance, and logistics with Trux360's calendar"
-        ogTitle="Fleet Management Calendar - Trux360"
-        ogDescription="Schedule and manage your fleet operations with Trux360's calendar"
+        description="Manage your scholarship schedules, maintenance, and logistics with Scholarship Portal's calendar"
+        ogTitle="Scholarship Management Calendar - Scholarship Portal"
+        ogDescription="Schedule and manage your scholarship operations with Scholarship Portal's calendar"
       />
       <div className="rounded-2xl border  border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
         <div className="custom-calendar">
