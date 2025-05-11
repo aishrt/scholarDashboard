@@ -7,6 +7,12 @@ import BasicTableOne, {
 } from "../../components/tables/BasicTables/BasicTableOne";
 import { useNavigate, useLocation } from "react-router-dom";
 import useGetData from "../../hooks/useGetData";
+import useDeleteData from "../../hooks/useDeleteData";
+import { toast } from "react-toastify";
+import Badge from "../../components/ui/badge/Badge";
+import { api } from "../../utils/api";
+import storage from "../../utils/storage";
+import { useAuthStore } from "../../store/authStore";
 
 interface Role {
   id: string;
@@ -41,16 +47,17 @@ interface UserResponse {
   };
 }
 
-export default function UserList() {
+export default function CategoryList() {
   const navigate = useNavigate();
   const location = useLocation();
-  const isAdminList = location.pathname === "/admin-list";
   const [users, setUsers] = useState<ApiUser[]>([]);
   const [loading, setLoading] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [limit] = useState(10);
-
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const roles = useAuthStore((state: any) => state.roles);
+  console.log("roles------------>", roles);
   // State for filters
   const [filters, setFilters] = useState({
     search: "",
@@ -88,35 +95,10 @@ export default function UserList() {
   // Define table columns
   const columns: Column[] = [
     {
-      key: "name",
-      header: "User",
-      render: (_, row) => (
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 overflow-hidden rounded-full">
-            <img
-              width={40}
-              height={40}
-              src="/images/user/default-avatar.jpg"
-              alt={`${row.first_name || ""} ${row.last_name || ""}`}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div>
-            <span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
-              {`${row.first_name || ""} ${row.last_name || ""}`.trim() || "N/A"}
-            </span>
-            <span className="block text-gray-500 text-theme-xs dark:text-gray-400">
-              {row.role.rolename}
-            </span>
-          </div>
-        </div>
-      ),
-      className: "px-5 py-4 sm:px-6",
+      key: "category",
+      header: "Category",
     },
-    {
-      key: "email",
-      header: "Email",
-    },
+
     {
       key: "createdAt",
       header: "Created At",
@@ -132,6 +114,39 @@ export default function UserList() {
     }));
     setCurrentPage(1); // Reset to first page on new search
   };
+  // Handler for add new user
+  const handleAddNew = () => {
+    navigate("/add-category");
+  };
+
+  // Handler for edit user
+  const handleEdit = (user: ApiUser) => {
+    navigate(`/edit-category/${user.id}`);
+  };
+
+  // Handler for delete user
+  const handleDelete = async (user: ApiUser) => {
+    try {
+      setDeleteLoading(true);
+      // Find the selected role object to get its ID
+      const response = await api.delete(`/v1/admin/delete-user/${user.id}`, {
+        headers: {
+          Authorization: `Bearer ${storage.getToken()}`,
+        },
+      });
+
+      if (response?.data) {
+        toast.success("Category deleted successfully!");
+        // Refresh the user list
+        fetchUsers();
+      }
+    } catch (err) {
+      console.error("Failed to delete category:", err);
+      toast.error("Failed to delete category. Please try again.");
+    } finally {
+      setDeleteLoading(false);
+    }
+  };
 
   // Calculate total pages
   const totalPages = Math.ceil(totalCount / limit);
@@ -144,29 +159,32 @@ export default function UserList() {
   return (
     <>
       <PageMeta
-        title={"User List"}
+        title="Category List"
         description="View and manage fleet data using Scholarship Portal's table components"
-        ogTitle="User List - Scholarship Portal"
+        ogTitle="Category List - Scholarship Portal"
         ogDescription="Data table components for managing fleet and logistics information"
         keywords="data tables, fleet management, logistics data, Scholarship Portal tables"
       />
-      <PageBreadcrumb pageTitle={"User List"} />
+      <PageBreadcrumb pageTitle="Category List" />
       <div className="space-y-6">
         <ComponentCard
-          title={"User List"}
+          title="Category List"
           showFilters={true}
           showRoleFilter={false}
-          showAddNew={false}
           showSortFilter={false}
           onSearch={handleSearch}
+          onAddNew={handleAddNew}
         >
           <BasicTableOne
             data={users}
             columns={columns}
             isLoading={loading}
-            emptyMessage="No users found"
+            emptyMessage="No categories found"
             actions={{
-              showEdit: false,
+              showEdit: true,
+              showDelete: true,
+              onEdit: handleEdit,
+              onDelete: handleDelete,
             }}
             pagination={{
               currentPage,

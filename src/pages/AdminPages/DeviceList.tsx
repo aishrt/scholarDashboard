@@ -41,7 +41,7 @@ interface UserResponse {
   };
 }
 
-export default function UserList() {
+export default function DeviceList() {
   const navigate = useNavigate();
   const location = useLocation();
   const isAdminList = location.pathname === "/admin-list";
@@ -88,8 +88,8 @@ export default function UserList() {
   // Define table columns
   const columns: Column[] = [
     {
-      key: "name",
-      header: "User",
+      key: "deviceId",
+      header: "Device",
       render: (_, row) => (
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 overflow-hidden rounded-full">
@@ -144,16 +144,16 @@ export default function UserList() {
   return (
     <>
       <PageMeta
-        title={"User List"}
+        title={"Device List"}
         description="View and manage fleet data using Scholarship Portal's table components"
-        ogTitle="User List - Scholarship Portal"
+        ogTitle="Device List - Scholarship Portal"
         ogDescription="Data table components for managing fleet and logistics information"
         keywords="data tables, fleet management, logistics data, Scholarship Portal tables"
       />
-      <PageBreadcrumb pageTitle={"User List"} />
+      <PageBreadcrumb pageTitle={"Device List"} />
       <div className="space-y-6">
         <ComponentCard
-          title={"User List"}
+          title={"Device List"}
           showFilters={true}
           showRoleFilter={false}
           showAddNew={false}
@@ -164,7 +164,7 @@ export default function UserList() {
             data={users}
             columns={columns}
             isLoading={loading}
-            emptyMessage="No users found"
+            emptyMessage="No devices found"
             actions={{
               showEdit: false,
             }}

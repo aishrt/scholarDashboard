@@ -49,7 +49,7 @@ export default function CompanyList() {
   const navigate = useNavigate();
   const location = useLocation();
   const { id } = useParams();
-  const isEditMode = location.pathname.includes('/edit-company/');
+  const isEditMode = location.pathname.includes("/edit-company/");
   const [companies, setCompanies] = useState<Company[]>([]);
   const [loading, setLoading] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
@@ -58,13 +58,13 @@ export default function CompanyList() {
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [companyDetails, setCompanyDetails] = useState<Company | null>(null);
   const [formData, setFormData] = useState<Partial<Company>>({
-    name: '',
-    email: '',
-    phone_number: '',
-    country: '',
-    state: '',
-    city: '',
-    status: 'active'
+    name: "",
+    email: "",
+    phone_number: "",
+    country: "",
+    state: "",
+    city: "",
+    status: "active",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -80,7 +80,9 @@ export default function CompanyList() {
   const fetchCompanyDetail = async (companyId: string) => {
     try {
       setLoading(true);
-      const response = await getCompanyDetail(`/v1/admin/organisation-detail/${companyId}`);
+      const response = await getCompanyDetail(
+        `/v1/admin/organisation-detail/${companyId}`
+      );
       if (response?.data) {
         setCompanyDetails(response.data);
         setFormData({
@@ -90,7 +92,7 @@ export default function CompanyList() {
           country: response.data.country,
           state: response.data.state,
           city: response.data.city,
-          status: response.data.status
+          status: response.data.status,
         });
       }
     } catch (err) {
@@ -101,11 +103,13 @@ export default function CompanyList() {
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -121,13 +125,13 @@ export default function CompanyList() {
         {
           headers: {
             Authorization: `Bearer ${storage.getToken()}`,
-          }
+          },
         }
       );
 
       if (response?.data) {
         toast.success("Company updated successfully!");
-        navigate('/company-list');
+        navigate("/company-list");
       }
     } catch (err) {
       console.error("Failed to update company:", err);
@@ -260,11 +264,14 @@ export default function CompanyList() {
   const handleDelete = async (company: Company) => {
     try {
       setDeleteLoading(true);
-      const response = await api.delete(`/v1/admin/delete-organisation/${company.id}`, {
-        headers: {
-          Authorization: `Bearer ${storage.getToken()}`,
+      const response = await api.delete(
+        `/v1/admin/delete-organisation/${company.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${storage.getToken()}`,
+          },
         }
-      });
+      );
 
       if (response?.data) {
         toast.success("Company deleted successfully!");
@@ -402,7 +409,7 @@ export default function CompanyList() {
                 <div className="flex justify-end space-x-4">
                   <button
                     type="button"
-                    onClick={() => navigate('/company-list')}
+                    onClick={() => navigate("/company-list")}
                     className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
                   >
                     Cancel
@@ -412,7 +419,7 @@ export default function CompanyList() {
                     disabled={isSubmitting}
                     className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
                   >
-                    {isSubmitting ? 'Saving...' : 'Save Changes'}
+                    {isSubmitting ? "Saving..." : "Save Changes"}
                   </button>
                 </div>
               </form>
@@ -438,6 +445,7 @@ export default function CompanyList() {
           title="Company List"
           showFilters={true}
           onSearch={handleSearch}
+          showSortFilter={false}
           onSortChange={handleSortChange}
           onAddNew={handleAddNew}
         >

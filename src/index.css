@@ -782,3 +782,37 @@ span.flatpickr-weekday,
 .Toastify__toast-container{
   z-index: 9999999!important;
 }
+.inputFile {
+  position: relative;
+  border: 1px solid rgb(164, 163, 163);
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.inputFile > input[type="file"] {
+  display: none;
+}
+.inputFile label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  cursor: pointer;
+  width: 91px;
+  height: 90px;
+}
+.inputFile img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border-radius: 10px;
+  padding: 1px;
+  float: left;
+}
+.inputFile i {
+  font-size: 26px;
+  color: grey;
+}

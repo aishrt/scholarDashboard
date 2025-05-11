@@ -1,4 +1,4 @@
-import { Navigate, Outlet, Route } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { Suspense } from "react";
 import NotFound from "../pages/OtherPage/NotFound";
 import UserProfiles from "../pages/UserProfiles";
@@ -19,12 +19,14 @@ import Avatars from "../pages/UiElements/Avatars";
 import Alerts from "../pages/UiElements/Alerts";
 import BasicTables from "../pages/Tables/BasicTables";
 import UserList from "../pages/AdminPages/UserList";
-import AddUsers from "../pages/AdminPages/AddUsers";
-import DealsList from "../pages/AdminPages/DealsList";
-import TrucksList from "../pages/AdminPages/TrucksList";
-import TransactionsList from "../pages/AdminPages/TransactionsList";
-import CompaniesList from "../pages/AdminPages/CompanyList";
-import CompanyList from "../pages/AdminPages/CompanyList";
+import AddUsers from "../pages/AdminPages/AddCoupons";
+import AddCoupons from "../pages/AdminPages/AddCoupons";
+import CouponsList from "../pages/AdminPages/CouponsList";
+import CategoryList from "../pages/AdminPages/CategoryList";
+import AddCategory from "../pages/AdminPages/AddCategory";
+import AddVersion from "../pages/AdminPages/AddVersion";
+import VersionList from "../pages/AdminPages/VersionList";
+import DeviceList from "../pages/AdminPages/DeviceList";
 // import { useAuthStore } from "../store/authStore";
 
 const ProtectedLayout = () => {
@@ -57,16 +59,22 @@ export const protectedRoutes = [
     children: [
       { path: "/", element: <Home /> },
       { path: "/profile", element: <UserProfiles /> },
-      { path: "/user-list", element: <UserList /> },
       { path: "/admin-list", element: <UserList /> },
-      { path: "/organisation-list", element: <CompanyList /> },
-      { path: "/deals-list", element: <DealsList /> },
-      { path: "/trucks-list", element: <TrucksList /> },
-      { path: "/transactions-list", element: <TransactionsList /> },
       { path: "/add-user", element: <AddUsers /> },
       { path: "/edit-user/:id", element: <AddUsers /> },
-      { path: "/edit-company/:id", element: <AddUsers /> },
-      // =======================================
+      // ================== Current Routes ======================
+      { path: "/coupon-list", element: <CouponsList /> },
+      { path: "/add-coupon", element: <AddCoupons /> },
+      { path: "/edit-coupon/:id", element: <AddCoupons /> },
+      { path: "/category-list", element: <CategoryList /> },
+      { path: "/add-category", element: <AddCategory /> },
+      { path: "/edit-category/:id", element: <AddCategory /> },
+      { path: "/version-list", element: <VersionList /> },
+      { path: "/add-version", element: <AddVersion /> },
+      { path: "/edit-version/:id", element: <AddVersion /> },
+      { path: "/user-list", element: <UserList /> },
+      { path: "/device-list", element: <DeviceList /> },
+      // ================= Not in use ======================
       { path: "/calendar", element: <Calendar /> },
       { path: "/blank", element: <Blank /> },
       { path: "/form-elements", element: <FormElements /> },

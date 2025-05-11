@@ -1,18 +1,149 @@
-import { FC } from "react";
+import React, { useState } from "react";
 
 interface FileInputProps {
-  className?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onFileChange: (file: File | null, fileDataURL: string) => void;
+  defaultImage?: string;
 }
 
-const FileInput: FC<FileInputProps> = ({ className, onChange }) => {
+const generateRandomId = () =>
+  `file-input-${Math.random().toString(36).substr(2, 9)}`;
+
+const FileInput: React.FC<FileInputProps> = ({
+  onFileChange,
+  defaultImage,
+}) => {
+  const [file, setFile] = useState<File | null>(null);
+  const [fileDataURL, setFileDataURL] = useState<string>("");
+  const fileId = generateRandomId();
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+
+    if (selectedFile) {
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+        if (event.target && event.target.result) {
+          setFileDataURL(event.target.result as string);
+          onFileChange(selectedFile, event.target.result as string);
+        }
+      };
+
+      reader.readAsDataURL(selectedFile);
+      setFile(selectedFile);
+    } else {
+      setFile(null);
+      setFileDataURL("");
+      onFileChange(null, "");
+    }
+  };
+
   return (
-    <input
-      type="file"
-      className={`focus:border-ring-brand-300 h-11 w-full overflow-hidden rounded-lg border border-gray-300 bg-transparent text-sm text-gray-500 shadow-theme-xs transition-colors file:mr-5 file:border-collapse file:cursor-pointer file:rounded-l-lg file:border-0 file:border-r file:border-solid file:border-gray-200 file:bg-gray-50 file:py-3 file:pl-3.5 file:pr-3 file:text-sm file:text-gray-700 placeholder:text-gray-400 hover:file:bg-gray-100 focus:outline-hidden focus:file:ring-brand-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:text-white/90 dark:file:border-gray-800 dark:file:bg-white/[0.03] dark:file:text-gray-400 dark:placeholder:text-gray-400 ${className}`}
-      onChange={onChange}
-    />
+    <div className="inputFile">
+      <label htmlFor={fileId}>
+        {file ? (
+          <img src={fileDataURL} alt="Selected" />
+        ) : (
+          <>
+            {defaultImage ? (
+              <img src={defaultImage} alt="Selected" />
+            ) : (
+              "+"
+            )}
+          </>
+        )}
+      </label>
+      <input id={fileId} type="file" onChange={handleFileChange} />
+    </div>
   );
 };
 
 export default FileInput;
+
+// import React, { useState } from "react";
+
+// interface FileInputProps {
+//   onFileChange: (file: File | null, fileDataURL: string) => void;
+//   defaultImage?: string;
+// }
+
+// const FileInput: React.FC<FileInputProps> = ({
+//   onFileChange,
+//   defaultImage,
+// }) => {
+//   const [file, setFile] = useState<File | null>(null);
+//   const [fileDataURL, setFileDataURL] = useState<string>("");
+
+//   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     const selectedFile = e.target.files?.[0];
+
+//     if (selectedFile) {
+//       const reader = new FileReader();
+
+//       reader.onload = function (event) {
+//         if (event.target && event.target.result) {
+//           setFileDataURL(event.target.result as string);
+//           onFileChange(selectedFile, event.target.result as string);
+//         }
+//       };
+
+//       reader.readAsDataURL(selectedFile);
+//       setFile(selectedFile);
+//     } else {
+//       setFile(null);
+//       setFileDataURL("");
+//       onFileChange(null, "");
+//     }
+//   };
+
+//   return (
+//     <div className="inputFile">
+//       <label htmlFor="input-file">
+//         {file ? (
+//           <img src={fileDataURL} alt="Selected" />
+//         ) : (
+//           <>
+//             {defaultImage ? (
+//               <img src={defaultImage} alt="Selected" />
+//             ) : (
+//               <i className="fa-solid fa-upload"></i>
+//             )}
+//           </>
+//         )}
+//       </label>
+//       <input id="input-file" type="file" onChange={handleFileChange} />
+//     </div>
+//   );
+// };
+
+// export default FileInput;
+
+// const [file, setFile] = useState(null);
+// const [fileDataURL, setFileDataURL] = useState<string>("");
+// const [hasImage, setHasImage] = useState(false);
+
+// const handleFileChange = (e: any) => {
+//   const selectedfile = e.target.files[0];
+//   const reader = new FileReader();
+//   reader.onload = function (event) {
+//     if (event.target && event.target.result) {
+//       setFileDataURL(event.target.result as string);
+//       setHasImage(true);
+//     }
+//   };
+//   if (selectedfile) {
+//     reader.readAsDataURL(selectedfile);
+//     setFile(selectedfile);
+//   }
+// };
+
+//   <div className="inputFile">
+//   <label htmlFor="input-file">
+//     {hasImage ? (
+//       <img src={fileDataURL} />
+//     ) : (
+//       <i className="fa-solid fa-upload"></i>
+//     )}
+//   </label>
+//   <input id="input-file" type="file" onChange={handleFileChange} />
+// </div>
