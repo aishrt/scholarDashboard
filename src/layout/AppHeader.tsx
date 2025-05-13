@@ -9,10 +9,14 @@ import useGetData from "../hooks/useGetData";
 import { useAuthStore } from "../store/authStore";
 
 const AppHeader: React.FC = () => {
-
   const { getData, loading, error } = useGetData();
   const roles = useAuthStore((state) => state.roles);
   const updateRoles = useAuthStore((state) => state.updateRoles);
+  const user = useAuthStore((state) => state.user);
+
+
+
+  
 
   useEffect(() => {
     const fetchRoles = async () => {
@@ -32,7 +36,7 @@ const AppHeader: React.FC = () => {
       fetchRoles();
     }
   }, [getData, roles, updateRoles]);
-console.log("roleeeeeee",roles)
+  console.log("roleeeeeee", roles);
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
 
   const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
@@ -190,7 +194,7 @@ console.log("roleeeeeee",roles)
             {/* <!-- Notification Menu Area --> */}
           </div>
           {/* <!-- User Area --> */}
-          <UserDropdown />
+          <UserDropdown profileData={user} />
         </div>
       </div>
     </header>

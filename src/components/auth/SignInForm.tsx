@@ -11,12 +11,21 @@ import usePostData from "../../hooks/usePostData";
 import { useAuthStore } from "../../store/authStore";
 
 interface LoginResponse {
-  token: string;
-  user: {
-    id: string;
-    name: string;
+  success: boolean;
+  message: string;
+  data: {
+    uid: string;
+    userId: string;
     email: string;
+    name: string;
+    phoneNumber: string;
+    idToken: string;
     role: string;
+    emailVerified: boolean;
+    createdAt: {
+      _seconds: number;
+      _nanoseconds: number;
+    };
   };
 }
 
@@ -27,7 +36,7 @@ export default function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { postData, loading } = usePostData<any, LoginResponse>(
-    "/api/auth/login"
+    "https://login-g2ivo4mtsa-uc.a.run.app"
   );
   const login = useAuthStore((state) => state.login);
   const user = useAuthStore((state) => state.user);
@@ -38,15 +47,16 @@ export default function SignInForm() {
         email,
         password,
       });
-      console.log("response-----------", response);
-      if (response) {
-        const tokenVal = response?.data?.tokens?.access?.token;
-        console.log("tokenVal-----------", tokenVal);
+      
+      if (response?.success) {
+        const tokenVal = response.data.idToken;
         storage.setToken(tokenVal);
         login({
-          id: response?.data?.user?.id,
-          name: response?.data?.user?.name,
-          email: response?.data?.user?.email,
+          id: response.data.userId,
+          name: response.data.name,
+          email: response.data.email,
+          role: response.data.role,
+          phoneNumber: response.data.phoneNumber
         });
         console.log("User after login:", user);
         navigate("/");

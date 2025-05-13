@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import storage from "../../utils/storage";
 import { useAuthStore } from "../../store/authStore";
 
-export default function UserDropdown() {
+export default function UserDropdown({ profileData }: { profileData: any }) {
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleDropdown() {
@@ -21,9 +21,6 @@ export default function UserDropdown() {
     window.location.href = "/signin";
   }
 
-
-  const { user } = useAuthStore();
-  console.log("user-----------", user);
   return (
     <div className="relative">
       <button
@@ -34,7 +31,7 @@ export default function UserDropdown() {
           <img src="/images/user/owner.jpg" alt="User" />
         </span>
 
-        <span className="block mr-1 font-medium text-theme-sm">User </span>
+        <span className="block mr-1 font-medium text-theme-sm">{profileData?.name} </span>
         <svg
           className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
@@ -62,10 +59,10 @@ export default function UserDropdown() {
       >
         <div>
           <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
-            kalkogic
+            {profileData?.name}
           </span>
           <span className="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">
-            kalkogic@gmail.com
+            {profileData?.email}
           </span>
         </div>
 

@@ -46,7 +46,13 @@ const FileInput: React.FC<FileInputProps> = ({
         ) : (
           <>
             {defaultImage ? (
-              <img src={defaultImage} alt="Selected" />
+              <img
+                src={defaultImage}
+                alt="Selected"
+                onError={(e) => {
+                  e.currentTarget.src = "/images/picture.png";
+                }}
+              />
             ) : (
               "+"
             )}

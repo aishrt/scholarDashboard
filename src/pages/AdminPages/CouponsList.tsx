@@ -12,109 +12,153 @@ import { toast } from "react-toastify";
 import Badge from "../../components/ui/badge/Badge";
 import { api } from "../../utils/api";
 import storage from "../../utils/storage";
-import { useAuthStore } from "../../store/authStore";
 
-interface Role {
+interface Discount {
   id: string;
-  rolename: string;
-  rolelevel: number;
+  brandName: string;
+  logo: string;
+  discountPercentage: number;
+  description: string;
+  code: string;
+  category: string;
+  createdAt: {
+    _seconds: number;
+    _nanoseconds: number;
+  };
+  url: string;
+  discountId?: string;
 }
 
-interface ApiUser {
-  id: string;
-  first_name?: string;
-  last_name?: string;
-  email: string;
-  phone_number?: string;
-  country: string;
-  state: string;
-  city: string;
-  role: string | Role;
-  status: string;
-  created_by?: string;
-  isDeleted: boolean;
-  deletedAt: string | null;
-}
-
-interface UserResponse {
+interface DiscountResponse {
   status: string;
   message: string;
-  data: {
-    users: ApiUser[];
-    totalCount: number;
-    page: number;
-    limit: number;
-  };
+  data: Discount[];
 }
 
 export default function CouponsList() {
   const navigate = useNavigate();
   const location = useLocation();
-  const isAdminList = location.pathname === "/admin-list";
-  const [users, setUsers] = useState<ApiUser[]>([]);
+  const [discounts, setDiscounts] = useState<Discount[]>([]);
   const [loading, setLoading] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [limit] = useState(10);
   const [deleteLoading, setDeleteLoading] = useState(false);
-  const roles = useAuthStore((state: any) => state.roles);
-  console.log("roles------------>", roles);
+
   // State for filters
   const [filters, setFilters] = useState({
     search: "",
     sort: "a-z",
-    role: "all",
+    category: "all",
   });
 
-  const { getData } = useGetData<UserResponse>();
+  const { getData } = useGetData<DiscountResponse>();
 
-  const fetchUsers = async () => {
+  const fetchDiscounts = async () => {
     try {
       setLoading(true);
-      const queryParams = new URLSearchParams({
-        page: currentPage.toString(),
-        limit: limit.toString(),
-        ...(filters.search && { name: filters.search }),
-      });
-
-      const response = await getData(`/v1/admin/list-user?${queryParams}`);
-      if (response?.data) {
-        setUsers(response.data.users);
-        setTotalCount(response.data.totalCount);
+      const response: any = await getData(
+        "https://getalldiscounts-g2ivo4mtsa-uc.a.run.app"
+      );
+      if (response) {
+        setDiscounts(response);
+        setTotalCount(response.length);
       }
     } catch (err) {
-      console.error("Failed to fetch users:", err);
+      console.error("Failed to fetch discounts:", err);
+      toast.error("Failed to fetch discounts");
     } finally {
       setLoading(false);
     }
   };
 
+  // Filter and paginate data
+  const getFilteredAndPaginatedData = () => {
+    let filteredData = [...discounts];
+
+    // Apply search filter
+    if (filters.search) {
+      const searchLower = filters.search.toLowerCase();
+      filteredData = filteredData.filter(
+        (item) =>
+          item.brandName.toLowerCase().includes(searchLower) ||
+          item.code.toLowerCase().includes(searchLower) ||
+          item.category.toLowerCase().includes(searchLower)
+      );
+    }
+
+    // Apply category filter
+    if (filters.category !== "all") {
+      filteredData = filteredData.filter(
+        (item) => item.category === filters.category
+      );
+    }
+
+    // Apply sorting
+    if (filters.sort === "a-z") {
+      filteredData.sort((a, b) => a.brandName.localeCompare(b.brandName));
+    } else if (filters.sort === "z-a") {
+      filteredData.sort((a, b) => b.brandName.localeCompare(a.brandName));
+    }
+
+    // Apply pagination
+    const startIndex = (currentPage - 1) * limit;
+    const endIndex = startIndex + limit;
+    return filteredData.slice(startIndex, endIndex);
+  };
+
+  // Calculate filtered data length and update total count
   useEffect(() => {
-    fetchUsers();
-  }, [currentPage, filters.search]);
+    let filteredData = [...discounts];
+
+    if (filters.search) {
+      const searchLower = filters.search.toLowerCase();
+      filteredData = filteredData.filter(
+        (item) =>
+          item.brandName.toLowerCase().includes(searchLower) ||
+          item.code.toLowerCase().includes(searchLower) ||
+          item.category.toLowerCase().includes(searchLower)
+      );
+    }
+
+    if (filters.category !== "all") {
+      filteredData = filteredData.filter(
+        (item) => item.category === filters.category
+      );
+    }
+
+    setTotalCount(filteredData.length);
+  }, [discounts, filters.search, filters.category]);
+
+  useEffect(() => {
+    fetchDiscounts();
+  }, []); // Remove currentPage and filters.search from dependencies
 
   // Define table columns
   const columns: Column[] = [
     {
-      key: "name",
-      header: "Coupon",
+      key: "brandName",
+      header: "Brand",
       render: (_, row) => (
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 overflow-hidden rounded-full">
             <img
               width={40}
               height={40}
-              src="/images/user/default-avatar.jpg"
-              alt={`${row.first_name || ""} ${row.last_name || ""}`}
+              src={row.logo ? row.logo : "/images/picture.png"}
+              alt={row.brandName}
               className="w-full h-full object-cover"
+              onError={(e) => {
+                e.currentTarget.src = "/images/picture.png";
+              }}
             />
           </div>
           <div>
             <span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
-              {`${row.first_name || ""} ${row.last_name || ""}`.trim() || "N/A"}
+              {row.brandName}
             </span>
             <span className="block text-gray-500 text-theme-xs dark:text-gray-400">
-              {row.role.rolename}
+              {row.category}
             </span>
           </div>
         </div>
@@ -122,31 +166,27 @@ export default function CouponsList() {
       className: "px-5 py-4 sm:px-6",
     },
     {
-      key: "email",
-      header: "Email",
+      key: "discountPercentage",
+      header: "Discount",
+      render: (value) => `${value}%`,
     },
     {
-      key: "role",
-      header: "Role",
-      render: (value) => {
-        if (typeof value === "object" && value !== null) {
-          return value.rolename || "N/A";
-        }
-        return value || "N/A";
-      },
+      key: "code",
+      header: "Code",
+      render: (value) => value || "N/A",
     },
     {
-      key: "status",
-      header: "Status",
+      key: "category",
+      header: "Category",
       render: (value) => (
         <Badge
           size="sm"
           color={
-            value === "active"
+            value === "Scholarship"
               ? "success"
-              : value === "pending"
+              : value === "Loan"
               ? "warning"
-              : "error"
+              : "info"
           }
         >
           {value}
@@ -156,7 +196,7 @@ export default function CouponsList() {
     {
       key: "createdAt",
       header: "Created At",
-      render: () => new Date().toLocaleDateString(),
+      render: (value) => new Date(value._seconds * 1000).toLocaleDateString(),
     },
   ];
 
@@ -166,7 +206,7 @@ export default function CouponsList() {
       ...prev,
       search: value,
     }));
-    setCurrentPage(1); // Reset to first page on new search
+    setCurrentPage(1);
   };
 
   // Handler for sort dropdown
@@ -177,55 +217,44 @@ export default function CouponsList() {
     }));
   };
 
-  // Handler for role filter
-  const handleRoleFilterChange = (value: string) => {
+  // Handler for category filter
+  const handleCategoryFilterChange = (value: string) => {
     setFilters((prev) => ({
       ...prev,
-      role: value,
+      category: value,
     }));
   };
 
-  // Handler for add new user
+  // Handler for add new discount
   const handleAddNew = () => {
     navigate("/add-coupon");
   };
 
-  // Handler for edit user
-  const handleEdit = (user: ApiUser) => {
-    navigate(`/edit-coupon/${user.id}`);
+  // Handler for edit discount
+  const handleEdit = (discount: Discount) => {
+    navigate(`/edit-coupon/${discount.id}`);
   };
 
-  // Handler for delete user
-  const handleDelete = async (user: ApiUser) => {
+  // Handler for delete discount
+  const handleDelete = async (discount: Discount) => {
     try {
       setDeleteLoading(true);
-      // Find the selected role object to get its ID
-      const selectedRole = roles.find(
-        (r: Role) =>
-          r.id === (typeof user.role === "string" ? user.role : user.role.id)
+      const response = await api.delete(
+        `https://deletediscount-g2ivo4mtsa-uc.a.run.app/${discount.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${storage.getToken()}`,
+          },
+        }
       );
-      if (!selectedRole) {
-        toast.error("Invalid role selected");
-        return;
-      }
-
-      const response = await api.delete(`/v1/admin/delete-user/${user.id}`, {
-        headers: {
-          Authorization: `Bearer ${storage.getToken()}`,
-        },
-        data: {
-          role: selectedRole.id,
-        },
-      });
 
       if (response?.data) {
-        toast.success("Coupon deleted successfully!");
-        // Refresh the user list
-        fetchUsers();
+        toast.success("Discount deleted successfully!");
+        fetchDiscounts();
       }
     } catch (err) {
-      console.error("Failed to delete coupon:", err);
-      toast.error("Failed to delete coupon. Please try again.");
+      console.error("Failed to delete discount:", err);
+      toast.error("Failed to delete discount. Please try again.");
     } finally {
       setDeleteLoading(false);
     }
@@ -242,29 +271,29 @@ export default function CouponsList() {
   return (
     <>
       <PageMeta
-        title="Coupon List"
-        description="View and manage fleet data using Scholarship Portal's table components"
-        ogTitle="Coupon List - Scholarship Portal"
-        ogDescription="Data table components for managing fleet and logistics information"
-        keywords="data tables, fleet management, logistics data, Scholarship Portal tables"
+        title="Discount List"
+        description="View and manage discounts and scholarships using Scholarship Portal's table components"
+        ogTitle="Discount List - Scholarship Portal"
+        ogDescription="Data table components for managing discounts and scholarships information"
+        keywords="data tables, discount management, scholarship data, Scholarship Portal tables"
       />
-      <PageBreadcrumb pageTitle="Coupon List" />
+      <PageBreadcrumb pageTitle="Discount List" />
       <div className="space-y-6">
         <ComponentCard
-          title="Coupon List"
+          title="Discount List"
           showFilters={true}
           showRoleFilter={false}
           onSearch={handleSearch}
           onSortChange={handleSortChange}
           showSortFilter={false}
-          onRoleFilterChange={handleRoleFilterChange}
+          onRoleFilterChange={handleCategoryFilterChange}
           onAddNew={handleAddNew}
         >
           <BasicTableOne
-            data={users}
+            data={getFilteredAndPaginatedData()}
             columns={columns}
             isLoading={loading}
-            emptyMessage="No coupons found"
+            emptyMessage="No discounts found"
             actions={{
               showEdit: true,
               showDelete: true,
